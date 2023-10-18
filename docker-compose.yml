@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  backend:
+    image: express-frontend:latest
+    build:
+      context: backend
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3100:3100
+  frontend:
+    image: frontend
+    build:
+      context: frontend
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      REACT_APP_OKTA_ISSUER: https://dev-15107069.okta.com/oauth2/default
+      REACT_APP_OKTA_CLIENT_ID: 0oacgo5p9qbwidBlF5d7
+      REACT_APP_OKTA_TESTING_DISABLEHTTPSCHECK: true
+    ports:
+      - 3000:3000
